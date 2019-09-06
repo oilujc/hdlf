@@ -14,7 +14,14 @@ const routes: Routes = [
   {
     path: 'list',
     loadChildren: './list/list.module#ListPageModule'
-  }
+  },
+  { path: 'search', loadChildren: './pages/search/search.module#SearchPageModule' },
+  { path: 'chapters', loadChildren: './pages/chapters/chapters.module#ChaptersPageModule' },
+  { path: 'subchapters/:id', loadChildren: './pages/subchapters/subchapters.module#SubchaptersPageModule' },
+  { path: 'pages/:idc/:ids', loadChildren: './pages/pages/pages.module#PagesPageModule' },
+  { path: 'content/:id', loadChildren: './pages/content/content.module#ContentPageModule' },
+  { path: 'marks', loadChildren: './pages/marks/marks.module#MarksPageModule' },
+  { path: 'section/:slug', loadChildren: './pages/section/section.module#SectionPageModule' }
 ];
 
 @NgModule({

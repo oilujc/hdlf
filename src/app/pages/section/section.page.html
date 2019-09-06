@@ -1,0 +1,15 @@
+<ion-header>
+  <ion-toolbar>
+  	<ion-buttons slot="start">
+      <ion-back-button defaultHref="home"></ion-back-button>
+    </ion-buttons>
+    <ion-title class="ion-text-capitalize">{{section?.title}}</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content >
+    <h2 class="ion-text-capitalize ion-text-center">{{section?.title}}</h2>
+	<ion-text>
+    	<div class="ion-padding" [innerHTML]="section?.content"></div>
+	</ion-text>
+</ion-content>

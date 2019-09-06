@@ -1,0 +1,21 @@
+<ion-header>
+  <ion-toolbar>
+  	<ion-buttons slot="start">
+      <ion-back-button defaultHref="home"></ion-back-button>
+    </ion-buttons>
+    <ion-title>Temario</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+	<ion-list>
+	  <ion-item *ngFor="let chapter of chapters" (click)="goToPage(chapter.id, chapter.page_type)">
+
+	    <ion-label *ngIf="chapter.page_type == 'ch'; else chapterType" text-wrap class="ion-text-capitalize"><ion-icon name="arrow-dropright"></ion-icon><b>Capítulo {{chapter.chapter}}</b>: {{chapter.title}}</ion-label>
+      
+      <ng-template #chapterType>
+        <ion-label text-wrap class="ion-text-capitalize"><ion-icon name="arrow-dropright"></ion-icon>{{chapter.title}}</ion-label>
+      </ng-template>
+	  </ion-item>
+	</ion-list>
+</ion-content>

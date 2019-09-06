@@ -1,0 +1,33 @@
+<ion-header>
+  <ion-toolbar>
+  	<ion-buttons slot="start">
+      <ion-back-button defaultHref="home"></ion-back-button>
+    </ion-buttons>
+    <ion-title>Marcadores</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+	
+<!-- List of Sliding Items -->
+<ion-list>
+  <ion-item-sliding *ngFor="let mark of marks">
+    <ion-item (click)="goToPage(mark.idChapter, mark.idSubchapter, mark.book)" >
+      <ion-label text-wrap>
+      	<ion-text>
+        	<h3>Capítulo {{mark.chapter}}</h3>
+      	</ion-text>
+      	<ion-text class="ion-text-capitalize">
+        	<p>{{mark.subChapterTitle}}</p>
+      	</ion-text>
+      </ion-label>
+      <ion-icon name="arrow-dropright" slot="end"></ion-icon>
+    </ion-item>
+    <ion-item-options side="end">
+      <ion-item-option (click)="goToPage(mark.idChapter, mark.idSubchapter, mark.book)">Leer</ion-item-option>
+      <ion-item-option color="danger" (click)="delete(mark.idChapter, mark.idSubchapter)">Eliminar</ion-item-option>
+    </ion-item-options>
+  </ion-item-sliding>
+
+</ion-list>
+</ion-content>

@@ -7,6 +7,11 @@
         </ion-toolbar>
       </ion-header>
       <ion-content>
+        <ion-card text-center class="hide-card">
+    <img src="assets/hector-pernia.jpeg" class="custom-avatar"/>
+    <h3>Pbro. Héctor Pernía, mfc</h3>
+    <hr>
+</ion-card>
         <ion-list>
           <ion-menu-toggle auto-hide="false" *ngFor="let p of appPages">
             <ion-item [routerDirection]="'root'" [routerLink]="[p.url]">
@@ -16,6 +21,15 @@
               </ion-label>
             </ion-item>
           </ion-menu-toggle>
+          <ion-menu-toggle auto-hide="false">
+            <ion-item (click)="changeBook()" [routerDirection]="'root'">
+              <ion-icon slot="start" name="refresh"></ion-icon>
+              <ion-label>
+                Cambiar libro
+              </ion-label>
+            </ion-item>
+          </ion-menu-toggle>
+
         </ion-list>
       </ion-content>
     </ion-menu>

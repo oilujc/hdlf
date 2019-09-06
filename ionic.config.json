@@ -1,5 +1,7 @@
 {
   "name": "hdlf",
-  "integrations": {},
+  "integrations": {
+    "cordova": {}
+  },
   "type": "angular"
 }
