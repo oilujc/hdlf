@@ -21,7 +21,8 @@ const routes: Routes = [
   { path: 'pages/:idc/:ids', loadChildren: './pages/pages/pages.module#PagesPageModule' },
   { path: 'content/:id', loadChildren: './pages/content/content.module#ContentPageModule' },
   { path: 'marks', loadChildren: './pages/marks/marks.module#MarksPageModule' },
-  { path: 'section/:slug', loadChildren: './pages/section/section.module#SectionPageModule' }
+  { path: 'section/:slug', loadChildren: './pages/section/section.module#SectionPageModule' },
+  { path: 'share', loadChildren: './share/share.module#SharePageModule' }
 ];
 
 @NgModule({

@@ -63,8 +63,6 @@ export class AppComponent {
         if (val == null) {
           this.storage.set('book', 1);
         }
-
-
       this.splashScreen.hide();
       }).catch(err=> console.log(err));
     });

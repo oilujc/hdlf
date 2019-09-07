@@ -23,7 +23,8 @@ export class ChaptersPage implements OnInit {
   ngOnInit() {
       this.storage.get('book').then((val) => {
          this.db.getJson().subscribe(response => {
-          this.chapters = response.filter(item => item.id === val)[0].chapter;
+          this.chapters = response.filter(item => item.id === val)[0].chapter.sort((a: any, b:any) => a.chapter - b.chapter);
+
         });
       }).catch(err=>console.log(err));
 	   
