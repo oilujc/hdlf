@@ -14,6 +14,8 @@ export class FrontComponent implements OnInit {
 	@Input() book: Book;
 
 
+ 
+
 	constructor(
 		private storage: Storage,
 		private router: Router,
@@ -22,5 +24,11 @@ export class FrontComponent implements OnInit {
 
 	ngOnInit() {
 
+
+
 	}
+
+
+
+
 }

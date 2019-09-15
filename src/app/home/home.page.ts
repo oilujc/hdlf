@@ -16,12 +16,13 @@ export class HomePage implements OnInit {
 	book : Book;
 	selectedBook: boolean;
 	bookImgName = "assets/portada1.jpg";
+	imgImprimatur: string;
 	splash = false;
 
 	message: string = "Hola esta es ap App de Hospitalitos De la Fe, espero que sea utíl para ti";
 	subject: string = null;
 	file: string = null;
-	url:string = null;
+	url:string = "https://play.google.com/store/apps/details?id=hospitalitos.de.la.fe";
 
 	constructor(
 		private storage: Storage,
@@ -70,8 +71,10 @@ export class HomePage implements OnInit {
 	selectBook(val) {
 		if (val == 1) {
 			this.selectedBook = true;
+			this.imgImprimatur = "/assets/imprimatur1.jpg";
 		} else if (val == 2) {
 			this.selectedBook = false;
+			this.imgImprimatur = "/assets/imprimatur2.png";
 		}
 	}
 
