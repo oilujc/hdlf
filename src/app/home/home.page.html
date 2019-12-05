@@ -1,33 +1,33 @@
-<div id="custom-overlay" [style.display]="splash ? 'flex': 'none'">
-  <div class="flb">
-    <img src="{{bookImgName}}">
-  </div>
+<div class="custom-overlay" [ngClass]="{'hide': !splash}">
+    <div class="flb">
+        <img src="{{bookImgName}}">
+    </div>
 </div>
 
 <ion-header>
-  <ion-toolbar [color]="selectedBook ? 'primary' : 'gold'">
-    <ion-buttons slot="start">
-      <ion-menu-button></ion-menu-button>
-    </ion-buttons>
-    <ion-buttons slot="end">
-      <ion-button (click)="changeBook()">
-      <ion-icon slot="icon-only" name="refresh"></ion-icon>
-    </ion-button>
-    </ion-buttons>
-    <ion-title class="ion-text-center">
-      Hospitalitos de la Fe
-    </ion-title>
-  </ion-toolbar>
+    <ion-toolbar [color]="selectedBook ? 'primary' : 'gold'">
+        <ion-buttons slot="start">
+            <ion-menu-button></ion-menu-button>
+        </ion-buttons>
+        <ion-buttons slot="end">
+            <ion-button (click)="changeBook()">
+                <ion-icon slot="icon-only" name="refresh"></ion-icon>
+            </ion-button>
+        </ion-buttons>
+        <ion-title class="ion-text-center">
+            Hospitalitos de la Fe
+        </ion-title>
+    </ion-toolbar>
 </ion-header>
 
 <ion-content>
-	<app-front [book]="book"></app-front>
-  <ion-card>
-  <ion-img src="{{imgImprimatur}}"></ion-img>
-</ion-card>
-  <ion-fab vertical="bottom" horizontal="end" slot="fixed">
-    <ion-fab-button (click)="share()">
-      <ion-icon name="share"></ion-icon>
-    </ion-fab-button>
-  </ion-fab>
+    <app-front [book]="book"></app-front>
+    <ion-card>
+        <ion-img src="{{imgImprimatur}}"></ion-img>
+    </ion-card>
+    <ion-fab vertical="bottom" horizontal="end" slot="fixed">
+        <ion-fab-button (click)="share()">
+            <ion-icon name="share"></ion-icon>
+        </ion-fab-button>
+    </ion-fab>
 </ion-content>

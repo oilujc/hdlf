@@ -9,79 +9,89 @@ import { Book } from './interfaces/book';
 import { ActivatedRoute, Router } from '@angular/router';
 
 @Component({
-  selector: 'app-root',
-  templateUrl: 'app.component.html'
+    selector: 'app-root',
+    templateUrl: 'app.component.html'
 })
 export class AppComponent {
-  book : Book;
+    book: Book;
+    selectedBook: number
 
-  public appPages = [
-    {
-      title: 'Home',
-      url: '/home',
-      icon: 'home'
-    },
-    {
-      title: 'Biografía',
-      url: '/section/biografia-del-autor',
-      icon: 'person'
-    },
-    {
-      title: 'Dedicatoria',
-      url: '/section/dedicatoria',
-      icon: 'mail-open'
-    }, 
-    {
-      title: 'Temario',
-      url: '/chapters',
-      icon: 'list'
-    },
-    {
-      title: 'Marcadores',
-      url: '/marks',
-      icon: 'bookmark'
-    }
-  ];
 
-  constructor(
-    private platform: Platform,
-    private splashScreen: SplashScreen,
-    private statusBar: StatusBar,
-    private storage: Storage,
-    private router: Router,
-    public navCtrl: NavController
-
-  ) {
-    this.initializeApp();
-  }
-
-  initializeApp() {
-    this.platform.ready().then(() => {
-      this.statusBar.styleDefault();
-      this.storage.get('book').then((val) => {
-
-        if (val == null) {
-          this.storage.set('book', 1);
+    public appPages = [
+        {
+            title: 'Home',
+            url: '/home',
+            icon: 'home'
+        },
+        {
+            title: 'Biografía',
+            url: '/section/biografia-del-autor',
+            icon: 'person'
+        },
+        {
+            title: 'Dedicatoria',
+            url: '/section/dedicatoria',
+            icon: 'mail-open'
+        },
+        {
+            title: 'Temario',
+            url: '/chapters',
+            icon: 'list'
+        },
+        {
+            title: 'Marcadores',
+            url: '/marks',
+            icon: 'bookmark'
         }
-      this.splashScreen.hide();
-      }).catch(err=> console.log(err));
-    });
-  }
+    ];
 
-  changeBook() {
-    this.storage.get('book').then((val) => {
-      console.log(val);
-      if (val == 1) {
-        this.storage.set('book', 2);
+    constructor(
+        private platform: Platform,
+        private splashScreen: SplashScreen,
+        private statusBar: StatusBar,
+        private storage: Storage,
+        private router: Router,
+        public navCtrl: NavController
 
-      } else if (val == 2){
-        this.storage.set('book', 1);
-      } 
-      this.navigate('/home');
-    }).catch(err=> console.log(err));
-  }
+    ) {
+        this.initializeApp();
+    }
 
-  navigate(url) {
-    this.router.navigateByUrl(url);
-  }
+    initializeApp() {
+        this.platform.ready().then(() => {
+
+            this.statusBar.styleDefault();
+
+            this.storage.get('book').then((val) => {
+
+                if (val == null) {
+                    this.storage.set('book', 1);
+                } else {
+                    this.selectedBook = val
+                }
+
+            }).catch(err => console.log(err));
+
+        });
+    }
+
+    changeBook() {
+        this.storage.get('book').then((val) => {
+
+            if (val == 1) {
+                this.storage.set('book', 2);
+                this.selectedBook = 2
+
+            } else if (val == 2) {
+                this.storage.set('book', 1);
+                this.selectedBook = 1
+            }
+            this.navigate('/home');
+
+        }).catch(err => console.log(err));
+    }
+
+    navigate(url) {
+        this.router.navigateByUrl(url);
+    }
 }

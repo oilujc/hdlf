@@ -3,14 +3,14 @@
   	<ion-buttons slot="start">
       <ion-back-button defaultHref="chapters"></ion-back-button>
     </ion-buttons>
-    <ion-title class="ion-text-capitalize">{{chapter?.title}}</ion-title>
+    <ion-title class="">{{chapter?.title}}</ion-title>
   </ion-toolbar>
 </ion-header>
 
 <ion-content>
 	<ion-text [ngStyle]="{'font-size': scale}">
-	  <h4 class="ion-text-capitalize">{{chapter?.title}}</h4>
-	  <div *ngFor="let content of chapter?.page_content" class="ion-padding" [innerHTML]="content.content"></div>
+	  <h4 class="text-select">{{chapter?.title}}</h4>
+	  <div *ngFor="let content of chapter?.page_content" class="ion-padding text-select" [innerHTML]="content.content"></div>
 	</ion-text>
 
   <!-- fab placed to the bottom end -->

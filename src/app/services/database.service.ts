@@ -28,4 +28,8 @@ export class DatabaseService {
     return this.http.get<any>("assets/section.json");
   }
 
+  getContentsJson() {
+    return this.http.get<any>("assets/content.json");
+  }
+
 }

@@ -11,10 +11,10 @@
 	<ion-list>
 	  <ion-item *ngFor="let chapter of chapters" (click)="goToPage(chapter.id, chapter.page_type)">
 
-	    <ion-label *ngIf="chapter.page_type == 'ch'; else chapterType" text-wrap class="ion-text-capitalize"><ion-icon name="arrow-dropright"></ion-icon><b>Capítulo {{chapter.chapter}}</b>: {{chapter.title}}</ion-label>
+	    <ion-label *ngIf="chapter.page_type == 'ch'; else chapterType" text-wrap><ion-icon name="arrow-dropright"></ion-icon><b>Capítulo {{chapter.chapter}}</b>: {{chapter.title}}</ion-label>
       
       <ng-template #chapterType>
-        <ion-label text-wrap class="ion-text-capitalize"><ion-icon name="arrow-dropright"></ion-icon>{{chapter.title}}</ion-label>
+        <ion-label text-wrap><ion-icon name="arrow-dropright"></ion-icon>{{chapter.title}}</ion-label>
       </ng-template>
 	  </ion-item>
 	</ion-list>

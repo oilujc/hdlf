@@ -9,11 +9,11 @@
 
 <ion-content>
 	<ion-text>
-	  <h3 class="ion-padding ion-text-center ion-text-capitalize"><span>Capítulo {{chapter?.chapter}}</span> {{chapter?.title}}</h3>
+	  <h3 class="ion-padding ion-text-center"><span>Capítulo {{chapter?.chapter}}</span> {{chapter?.title}}</h3>
 	</ion-text>
 	<ion-list>
 	  <ion-item *ngFor="let content of chapter?.subchapter" (click)="goToPage(content.id)">
-	    <ion-label text-wrap class="ion-text-capitalize"><ion-icon name="arrow-dropright"></ion-icon> {{content.title}}</ion-label>
+	    <ion-label text-wrap><ion-icon name="arrow-dropright"></ion-icon> {{content.title}}</ion-label>
 	  </ion-item>
 	</ion-list>
 </ion-content>
