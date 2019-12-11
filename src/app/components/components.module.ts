@@ -2,18 +2,14 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { IonicModule } from '@ionic/angular';
 
-import { FrontComponent } from './front/front.component';
-
 @NgModule({
   imports: [
-    CommonModule, 
+    CommonModule,
     IonicModule
   ],
   declarations: [
-    FrontComponent
   ],
   exports: [
-    FrontComponent
   ]
 })
 export class ComponentsModule {}

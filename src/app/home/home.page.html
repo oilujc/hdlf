@@ -1,32 +1,40 @@
-<div class="custom-overlay" [ngClass]="{'hide': !splash}">
-    <div class="flb">
-        <img src="{{bookImgName}}">
-    </div>
+<div class="bookSplash" [ngClass]="{'hide': !splash}">
+    <img src="{{bookImgName}}">
 </div>
 
 <ion-header>
-    <ion-toolbar [color]="selectedBook ? 'primary' : 'gold'">
+    <ion-toolbar mode="md">
+        <ion-title class="home-title">
+            Hospitalitos de la Fe
+        </ion-title>
         <ion-buttons slot="start">
             <ion-menu-button></ion-menu-button>
         </ion-buttons>
-        <ion-buttons slot="end">
-            <ion-button (click)="changeBook()">
-                <ion-icon slot="icon-only" name="refresh"></ion-icon>
-            </ion-button>
-        </ion-buttons>
-        <ion-title class="ion-text-center">
-            Hospitalitos de la Fe
-        </ion-title>
     </ion-toolbar>
 </ion-header>
 
 <ion-content>
-    <app-front [book]="book"></app-front>
+    <ion-card>
+        <ion-img class="welcome" src="/assets/home.png"></ion-img>
+        <ion-card-header class="ion-text-center">
+            <ion-card-subtitle class="ion-text-uppercase">{{book?.title|uppercase}}</ion-card-subtitle>
+            <ion-card-title class="ion-text-capitalize">{{book?.subtitle}}</ion-card-title>
+        </ion-card-header>
+        <ion-card-content class="ion-text-center">
+            <p>Elaborada por: <br>
+                <b>Pbro. Héctor Pernía, mfc</b></p>
+
+            <p>Con colaboración de: <br>
+                <b>Sandra Rodríguez, mfc</b> <br>
+                <b>Andy Rodríguez, mfc</b> <br> Y los censores eclesiásticos.
+            </p>
+        </ion-card-content>
+    </ion-card>
     <ion-card>
         <ion-img src="{{imgImprimatur}}"></ion-img>
     </ion-card>
     <ion-fab vertical="bottom" horizontal="end" slot="fixed">
-        <ion-fab-button (click)="share()">
+        <ion-fab-button (click)="presentActionSheet()">
             <ion-icon name="share"></ion-icon>
         </ion-fab-button>
     </ion-fab>

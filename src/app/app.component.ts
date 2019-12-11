@@ -14,10 +14,8 @@ import { ActivatedRoute, Router } from '@angular/router';
 })
 export class AppComponent {
     book: Book;
-    selectedBook: number
-
-
-    public appPages = [
+    selectedBook: number;
+    appPages = [
         {
             title: 'Home',
             url: '/home',
@@ -59,35 +57,27 @@ export class AppComponent {
 
     initializeApp() {
         this.platform.ready().then(() => {
-
             this.statusBar.styleDefault();
-
             this.storage.get('book').then((val) => {
-
                 if (val == null) {
                     this.storage.set('book', 1);
                 } else {
-                    this.selectedBook = val
+                    this.selectedBook = val;
                 }
-
             }).catch(err => console.log(err));
-
         });
     }
 
     changeBook() {
         this.storage.get('book').then((val) => {
-
-            if (val == 1) {
+            if (val === 1) {
                 this.storage.set('book', 2);
-                this.selectedBook = 2
-
-            } else if (val == 2) {
+                this.selectedBook = 2;
+            } else if (val === 2) {
                 this.storage.set('book', 1);
-                this.selectedBook = 1
+                this.selectedBook = 1;
             }
             this.navigate('/home');
-
         }).catch(err => console.log(err));
     }
 
