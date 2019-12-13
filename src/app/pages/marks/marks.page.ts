@@ -3,59 +3,39 @@ import { Storage } from '@ionic/storage';
 import { ToastController } from '@ionic/angular';
 import { Mark } from '../../interfaces/mark';
 import { ActivatedRoute, Router } from '@angular/router';
+import { BookmarkService } from 'src/app/services/bookmark.service';
 @Component({
-  selector: 'app-marks',
-  templateUrl: './marks.page.html',
-  styleUrls: ['./marks.page.scss'],
+    selector: 'app-marks',
+    templateUrl: './marks.page.html',
+    styleUrls: ['./marks.page.scss'],
 })
 export class MarksPage implements OnInit {
 
-  marks : Mark[];
+    marks: Mark[];
 
-  constructor(
-  	private storage: Storage,
-    public toastController: ToastController,
-    private router: Router
-  	) { }
+    constructor(private storage: Storage,
+                public toastController: ToastController,
+                private router: Router,
+                private bookmarkService: BookmarkService
+            ) { }
 
-  ngOnInit() {
-  	this.storage.get("marks").then((items: Mark[]) => {
-  		if (items) {
-        this.marks = items;
-      }
-  	}).catch(err=>console.log(err));
-  }
+    ngOnInit() {
+        this.bookmarkService.getMarks().subscribe(marks => {
+            this.marks = marks;
+        });
+    }
 
-  delete(idchapter, idsubchapter) {
-    console.log(idchapter, idsubchapter);
-    this.storage.get("marks").then((items: Mark[]) => {
-      if (items) {
-        this.marks = items.filter(data => data.idChapter !== idchapter && data.idSubchapter !== idsubchapter);
-        this.storage.set('marks', this.marks);
-        this.showToast("Marcador eliminado correctamente!");
-      }
-    }).catch(err=>console.log(err));
-  }
+    delete(idchapter, idsubchapter) {
+        this.bookmarkService.deleteMark(idchapter, idsubchapter);
+    }
 
-  goToPage(idChapter, idSubchapter, book) {
-     this.storage.get('book').then((val) => {
-      if (val !== book) {
-        // code...
-        this.storage.set("book", book);
-      }
-      
-      this.router.navigateByUrl(`pages/${idChapter}/${idSubchapter}`);
-      }).catch(err=>console.log(err));
-     
-  }
+    goToPage(idChapter, idSubchapter, book) {
+        this.storage.get('book').then((val) => {
+            if (val !== book) {
+                this.storage.set('book', book);
+            }
 
-  async showToast(message:string) {
-    const toast = await this.toastController.create({
-      message: message,
-      duration: 2000
-    });
-    toast.present();
-  }
-
-
+            this.router.navigateByUrl(`pages/${idChapter}/${idSubchapter}`);
+        }).catch(err => console.log(err));
+    }
 }

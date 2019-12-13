@@ -7,6 +7,9 @@ import { Storage } from '@ionic/storage';
 
 import { Book } from './interfaces/book';
 import { ActivatedRoute, Router } from '@angular/router';
+import { DatabaseService } from './services/database.service';
+import { ThemingService } from './services/theming.service';
+import { BookmarkService } from './services/bookmark.service';
 
 @Component({
     selector: 'app-root',
@@ -15,6 +18,9 @@ import { ActivatedRoute, Router } from '@angular/router';
 export class AppComponent {
     book: Book;
     selectedBook: number;
+    splash = false;
+    bookImgName = 'assets/portada1.jpg';
+
     appPages = [
         {
             title: 'Home',
@@ -45,12 +51,12 @@ export class AppComponent {
 
     constructor(
         private platform: Platform,
-        private splashScreen: SplashScreen,
         private statusBar: StatusBar,
         private storage: Storage,
         private router: Router,
-        public navCtrl: NavController
-
+        public navCtrl: NavController,
+        private db: DatabaseService,
+        private bookmarkService: BookmarkService
     ) {
         this.initializeApp();
     }
@@ -61,24 +67,34 @@ export class AppComponent {
             this.storage.get('book').then((val) => {
                 if (val == null) {
                     this.storage.set('book', 1);
+                    this.db.setBook(1);
                 } else {
-                    this.selectedBook = val;
+                    this.db.setBook(val);
                 }
             }).catch(err => console.log(err));
+
+            this.bookmarkService.loadMarks();
         });
     }
 
-    changeBook() {
+    changeBook(e) {
         this.storage.get('book').then((val) => {
+            console.log(val)
             if (val === 1) {
-                this.storage.set('book', 2);
-                this.selectedBook = 2;
+                this.bookImgName = 'assets/portada2.jpg';
+                this.db.setBook(2);
             } else if (val === 2) {
-                this.storage.set('book', 1);
-                this.selectedBook = 1;
+                this.bookImgName = 'assets/portada1.jpg';
+                this.db.setBook(1);
             }
+            this.hideSplash();
             this.navigate('/home');
         }).catch(err => console.log(err));
+    }
+
+    hideSplash() {
+        this.splash = true;
+        setTimeout(() => this.splash = false, 2500);
     }
 
     navigate(url) {

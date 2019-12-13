@@ -1,38 +1,38 @@
 <ion-header>
-  <ion-toolbar>
-  	<ion-buttons slot="start">
-      <ion-back-button defaultHref="chapters"></ion-back-button>
-    </ion-buttons>
-    <ion-buttons slot="end">
-      <ion-button (click)="presentPopover($event)">
-      <ion-icon slot="icon-only" name="more"></ion-icon>
-    </ion-button>
-    </ion-buttons>
-    <ion-title class="">Capítulo {{chapter?.chapter}}</ion-title>
-  </ion-toolbar>
+    <ion-toolbar>
+        <ion-buttons slot="start">
+            <ion-back-button defaultHref="chapters"></ion-back-button>
+        </ion-buttons>
+        <ion-buttons slot="end">
+            <ion-button (click)="presentActionSheet()">
+                <ion-icon slot="icon-only" name="more"></ion-icon>
+            </ion-button>
+        </ion-buttons>
+        <ion-title class="">Capítulo {{chapter?.chapter}}</ion-title>
+    </ion-toolbar>
 </ion-header>
 
-<ion-content >
-	<ion-text [ngStyle]="{'font-size': scale}">
-    <h2 class="ion-text-center text-select">{{chapter?.title}}</h2>
-	  <h4 class="text-select">{{subchapter?.title}}</h4>
-    <ol>
-      <li value="{{content.number}}" *ngFor="let content of subchapter?.content; let i = index">
-        <div class="ion-padding text-select" [innerHTML]="content.content"></div>
-      </li>
-    </ol>
-	  
-	</ion-text>
+<ion-content>
+    <ion-text [ngStyle]="{'font-size': scale}">
+        <h2 class="ion-text-center text-select">{{chapter?.title}}</h2>
+        <h4 class="text-select">{{subchapter?.title}}</h4>
+        <ol>
+            <li value="{{content.number}}" *ngFor="let content of subchapter?.content; let i = index">
+                <div class="ion-padding text-select" [innerHTML]="content.content"></div>
+            </li>
+        </ol>
 
-   <!-- fab placed to the bottom end -->
-  <ion-fab vertical="bottom" horizontal="end" slot="fixed">
-    <ion-fab-button side="start" class="zoomOutBtn" size="small" [disabled]="!zoomOutActive" (click)="zoomOut()">
-      <ion-icon name="remove"></ion-icon>
-    </ion-fab-button>
-  </ion-fab>
-  <ion-fab vertical="bottom" horizontal="end" slot="fixed">
-    <ion-fab-button side="end" class="zoomInBtn" size="small" [disabled]="!zoomInActive" (click)="zoomIn()">
-      <ion-icon name="add"></ion-icon>
-    </ion-fab-button>
-  </ion-fab>
+    </ion-text>
+
+    <!-- fab placed to the bottom end -->
+    <ion-fab vertical="bottom" horizontal="end" slot="fixed">
+        <ion-fab-button side="start" class="zoomOutBtn" size="small" [disabled]="!zoomOutActive" (click)="zoomOut()">
+            <ion-icon name="remove"></ion-icon>
+        </ion-fab-button>
+    </ion-fab>
+    <ion-fab vertical="bottom" horizontal="end" slot="fixed">
+        <ion-fab-button side="end" class="zoomInBtn" size="small" [disabled]="!zoomInActive" (click)="zoomIn()">
+            <ion-icon name="add"></ion-icon>
+        </ion-fab-button>
+    </ion-fab>
 </ion-content>

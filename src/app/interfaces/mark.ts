@@ -2,7 +2,7 @@ export interface Mark {
   book: number,
   idChapter: number,
   idSubchapter: number,
-  chapter: number,
+  chapter: string,
   chapterTitle: string,
   subChapterTitle: string,
 }

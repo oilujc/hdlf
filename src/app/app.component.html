@@ -1,4 +1,7 @@
 <ion-app>
+    <div class="bookSplash" [ngClass]="{'hide': !splash}">
+        <img src="{{bookImgName}}">
+    </div>
     <ion-split-pane>
         <ion-menu>
             <ion-header>
@@ -21,7 +24,22 @@
                             </ion-label>
                         </ion-item>
                     </ion-menu-toggle>
-
+                    <ion-menu-toggle auto-hide="false">
+                        <ion-item>
+                            <ion-icon slot="start" name="medkit"></ion-icon>
+                            <ion-label>
+                                ¿Cómo fundar Hospitalitos de la fé?
+                            </ion-label>
+                        </ion-item>
+                    </ion-menu-toggle>
+                    <ion-menu-toggle auto-hide="false" (click)="changeBook($event)">
+                        <ion-item>
+                            <ion-icon slot="start" name="book"></ion-icon>
+                            <ion-label>
+                                Cambiar libro
+                            </ion-label>
+                        </ion-item>
+                    </ion-menu-toggle>
                 </ion-list>
             </ion-content>
         </ion-menu>
