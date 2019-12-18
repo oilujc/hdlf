@@ -1,9 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { DatabaseService } from '../../services/database.service';
 import { ActivatedRoute, Router } from '@angular/router';
-import { Chapter } from "../../interfaces/chapter";
-import { Subchapter } from "../../interfaces/subchapter";
-import { Storage } from '@ionic/storage';
+import { Chapter } from '../../interfaces/chapter';
+import { Subchapter } from '../../interfaces/subchapter';
 import { PopoverController, ActionSheetController } from '@ionic/angular';
 
 import { MoreBtnComponent } from '../../components/more-btn/more-btn.component';
@@ -18,18 +17,16 @@ export class PagesPage implements OnInit {
     book: number;
     chapter: Chapter;
     subchapter: Subchapter;
-    idChapter: number;
-    idSubChapter: number;
+    idChapter: string;
+    idSubChapter: string;
     scale = '16px';
     scaleNumber = 16;
     zoomInActive = true;
     zoomOutActive = false;
 
     constructor(
-        private storage: Storage,
         private db: DatabaseService,
         private activatedRoute: ActivatedRoute,
-        private router: Router,
         private popoverController: PopoverController,
         private actionSheetController: ActionSheetController,
         private bookmarkService: BookmarkService
@@ -37,14 +34,18 @@ export class PagesPage implements OnInit {
 
     ngOnInit() {
 
-        this.idChapter = parseInt(this.activatedRoute.snapshot.paramMap.get('idc'));
-        this.idSubChapter = parseInt(this.activatedRoute.snapshot.paramMap.get('ids'));
+        this.idChapter = this.activatedRoute.snapshot.paramMap.get('idc');
+        this.idSubChapter = this.activatedRoute.snapshot.paramMap.get('ids');
+
+        console.log(this.idChapter, this.idSubChapter)
 
         this.db.getCurrentBook().subscribe(book => {
             if (book[0] !== undefined) {
                 this.book = book[0].id;
-                this.chapter = book[0].chapter.filter(item => item.id === this.idChapter)[0];
-                this.subchapter = this.chapter.subchapter.filter(item => item.id === this.idSubChapter)[0];
+                this.chapter = book[0].chapter.filter(item => item.id.toString() === this.idChapter)[0];
+                if (this.chapter) {
+                    this.subchapter = this.chapter.subchapter.filter(item => item.id.toString() === this.idSubChapter)[0];
+                }
             }
         });
     }
@@ -53,8 +54,7 @@ export class PagesPage implements OnInit {
         const actionSheet = await this.actionSheetController.create({
             buttons: [{
                 text: 'Marcar Lectura',
-                role: 'bookmark',
-                icon: 'trash',
+                icon: 'bookmark',
                 handler: () => {
                     this.bookmarkService.addMark({
                         book: this.book,
@@ -64,12 +64,6 @@ export class PagesPage implements OnInit {
                         subChapterTitle: this.subchapter.title,
                         chapter: this.chapter.chapter
                     })
-                }
-            }, {
-                text: 'Compartir Lectura',
-                icon: 'share',
-                handler: () => {
-                    console.log('Share clicked');
                 }
             }]
         });
@@ -125,5 +119,4 @@ export class PagesPage implements OnInit {
             this.zoomInActive = false;
         }
     }
-
 }

@@ -1,14 +1,12 @@
 import { Component } from '@angular/core';
 
 import { Platform, NavController } from '@ionic/angular';
-import { SplashScreen } from '@ionic-native/splash-screen/ngx';
 import { StatusBar } from '@ionic-native/status-bar/ngx';
 import { Storage } from '@ionic/storage';
 
 import { Book } from './interfaces/book';
 import { ActivatedRoute, Router } from '@angular/router';
 import { DatabaseService } from './services/database.service';
-import { ThemingService } from './services/theming.service';
 import { BookmarkService } from './services/bookmark.service';
 
 @Component({
@@ -41,6 +39,11 @@ export class AppComponent {
             title: 'Temario',
             url: '/chapters',
             icon: 'list'
+        },
+        {
+            title: '¿Cómo fundar los Hospitalitos de la fe?',
+            url: '/how-to',
+            icon: 'medkit'
         },
         {
             title: 'Marcadores',

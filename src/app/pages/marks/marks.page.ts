@@ -4,6 +4,7 @@ import { ToastController } from '@ionic/angular';
 import { Mark } from '../../interfaces/mark';
 import { ActivatedRoute, Router } from '@angular/router';
 import { BookmarkService } from 'src/app/services/bookmark.service';
+import { DatabaseService } from 'src/app/services/database.service';
 @Component({
     selector: 'app-marks',
     templateUrl: './marks.page.html',
@@ -16,12 +17,14 @@ export class MarksPage implements OnInit {
     constructor(private storage: Storage,
                 public toastController: ToastController,
                 private router: Router,
-                private bookmarkService: BookmarkService
+                private bookmarkService: BookmarkService,
+                private db: DatabaseService
             ) { }
 
     ngOnInit() {
         this.bookmarkService.getMarks().subscribe(marks => {
             this.marks = marks;
+            console.log(this.marks)
         });
     }
 
@@ -30,9 +33,11 @@ export class MarksPage implements OnInit {
     }
 
     goToPage(idChapter, idSubchapter, book) {
+        console.log(book)
         this.storage.get('book').then((val) => {
+            console.log(book, val)
             if (val !== book) {
-                this.storage.set('book', book);
+                this.db.setBook(book);
             }
 
             this.router.navigateByUrl(`pages/${idChapter}/${idSubchapter}`);

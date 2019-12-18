@@ -1,7 +1,6 @@
 export interface Page {
-	id:number,
-	slug:string,
-	title:string,
-	content: string,
-
+    id: number,
+    slug: string,
+    title: string,
+    content: string
 }

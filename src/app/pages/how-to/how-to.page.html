@@ -3,23 +3,16 @@
         <ion-buttons slot="start">
             <ion-back-button defaultHref="home"></ion-back-button>
         </ion-buttons>
-        <ion-title>Temario</ion-title>
+        <ion-title>¿Cómo fundar los Hospitalitos de la fe?</ion-title>
     </ion-toolbar>
 </ion-header>
 
 <ion-content>
     <ion-list>
         <ion-item *ngFor="let chapter of chapters" (click)="goToPage(chapter.id, chapter.page_type)">
-
-            <ion-label *ngIf="chapter.page_type == 'ch'; else chapterType" text-wrap>
+            <ion-label *ngIf="chapter.page_type === 'ch'" text-wrap>
                 <ion-icon name="arrow-dropright"></ion-icon><b>Capítulo {{chapter.chapter}}</b>: {{chapter.title}}
             </ion-label>
-
-            <ng-template #chapterType>
-                <ion-label text-wrap>
-                    <ion-icon name="arrow-dropright"></ion-icon>{{chapter.title}}
-                </ion-label>
-            </ng-template>
         </ion-item>
     </ion-list>
 </ion-content>

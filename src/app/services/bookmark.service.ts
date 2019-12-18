@@ -3,6 +3,7 @@ import { ToastController } from '@ionic/angular';
 import { Mark } from '../interfaces/mark';
 import { Storage } from '@ionic/storage';
 import { BehaviorSubject, Observable } from 'rxjs';
+import { DatabaseService } from './database.service';
 
 @Injectable({
     providedIn: 'root'
@@ -21,8 +22,10 @@ export class BookmarkService {
     }
 
     loadMarks() {
+        console.log('loads')
         this.storage.get('marks').then((items: Mark[]) => {
             this.marks = items;
+            this.markSubject.next(this.marks);
         })
     }
 
@@ -63,7 +66,7 @@ export class BookmarkService {
             this.markSubject.next(this.marks);
             this.showToast('Marcador eliminado correctamente!');
           }
-        }).catch(err=>console.log(err));
+        }).catch(err => console.log(err));
       }
 
     async showToast(msg: string) {

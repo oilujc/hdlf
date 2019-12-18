@@ -30,7 +30,7 @@ export class HomePage implements OnInit {
 
     constructor(
         private db: DatabaseService,
-        private socialSharing: SocialSharing,
+        private socialSharing: SocialSharing
     ) { }
 
     ngOnInit() {
@@ -48,8 +48,6 @@ export class HomePage implements OnInit {
 
     share() {
         this.socialSharing.share(this.message, this.subject, this.file, this.url)
-            .then((res) => console.log(res))
-            .catch(err => console.log(err));
     }
 
 }
